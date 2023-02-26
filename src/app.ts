@@ -20,7 +20,6 @@ function destructuriseString(str: string, shift: number): string {
 }
 
 function shiftLetter(letter: string, shift: number): string {
-    let res: string;
     const abcArr: string[] = new Array(26)
         .fill(0)
         .map((_, i) => String.fromCharCode(97 + i));
@@ -31,8 +30,7 @@ function shiftLetter(letter: string, shift: number): string {
     resIndex = resIndex < 0 ? abcArr.length + resIndex : resIndex;
     resIndex = resIndex >= abcArr.length ? resIndex - abcArr.length : resIndex;
 
-    res = abcArr[resIndex];
-    return res;
+    return abcArr[resIndex];
 }
 
 console.log(shiftRound("aabx!", 4)); // → "eefb!"
@@ -42,3 +40,6 @@ console.log(shiftRound("aabx!", 212)); // → "eefb!"
 console.log(unshiftRound("eefb!", 4)); // → "aabx!"
 console.log(unshiftRound("eefb!", 212)); // → "aabx!"
 console.log(unshiftRound("eefb!", 30)); // → "aabx!"
+
+console.log(shiftRound("A1750abx?", 212)); // → "A1750efb?"
+console.log(unshiftRound("E1750efb?", 212)); // → "E1750abx?"
