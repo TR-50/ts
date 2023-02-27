@@ -1,3 +1,6 @@
+const a: string = 'a';
+const z: string = 'z';
+
 function shiftRound(_str: string, _shift: number): string {
     return destructuriseString(_str, _shift);
 }
@@ -11,8 +14,8 @@ function destructuriseString(str: string, shift: number): string {
     const strArr: string[] = str.split("");
     return strArr
         .map((letter) =>
-            letter.charCodeAt(0) >= "a".charCodeAt(0) &&
-            letter.charCodeAt(0) <= "z".charCodeAt(0)
+            letter.charCodeAt(0) >= a.charCodeAt(0) &&
+            letter.charCodeAt(0) <= z.charCodeAt(0)
                 ? shiftLetter(letter, shift)
                 : letter
         )
