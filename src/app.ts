@@ -1,5 +1,7 @@
 const a: string = 'a';
 const z: string = 'z';
+const aCode: number =  a.charCodeAt(0);
+const aFill: number = z.charCodeAt(0) - aCode + 1; 
 
 function shiftRound(_str: string, _shift: number): string {
     return destructuriseString(_str, _shift);
@@ -14,8 +16,7 @@ function destructuriseString(str: string, shift: number): string {
     const strArr: string[] = str.split("");
     return strArr
         .map((letter) =>
-            letter.charCodeAt(0) >= a.charCodeAt(0) &&
-            letter.charCodeAt(0) <= z.charCodeAt(0)
+            letter >= a && letter <= z
                 ? shiftLetter(letter, shift)
                 : letter
         )
@@ -23,9 +24,9 @@ function destructuriseString(str: string, shift: number): string {
 }
 
 function shiftLetter(letter: string, shift: number): string {
-    const abcArr: string[] = new Array(26)
+    const abcArr: string[] = new Array(aFill)
         .fill(0)
-        .map((_, i) => String.fromCharCode(97 + i));
+        .map((_, i) => String.fromCharCode(aCode + i));
     shift %= abcArr.length;
     let curIndex: number = abcArr.indexOf(letter);
     let resIndex: number = curIndex + shift;
