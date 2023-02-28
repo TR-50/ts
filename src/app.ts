@@ -1,7 +1,7 @@
-const a: string = 'a';
-const z: string = 'z';
-const aCode: number =  a.charCodeAt(0);
-const aFill: number = z.charCodeAt(0) - aCode + 1; 
+const a: string = "a";
+const z: string = "z";
+const aCode: number = a.charCodeAt(0);
+const abcLength: number = z.charCodeAt(0) - aCode + 1;
 
 function shiftRound(_str: string, _shift: number): string {
     return destructuriseString(_str, _shift);
@@ -16,25 +16,20 @@ function destructuriseString(str: string, shift: number): string {
     const strArr: string[] = str.split("");
     return strArr
         .map((letter) =>
-            letter >= a && letter <= z
-                ? shiftLetter(letter, shift)
-                : letter
+            letter >= a && letter <= z ? shiftLetter(letter, shift) : letter
         )
         .join("");
 }
 
 function shiftLetter(letter: string, shift: number): string {
-    const abcArr: string[] = new Array(aFill)
-        .fill(0)
-        .map((_, i) => String.fromCharCode(aCode + i));
-    shift %= abcArr.length;
-    let curIndex: number = abcArr.indexOf(letter);
+    shift %= abcLength;
+    let curIndex: number = letter.charCodeAt(0) - aCode;
     let resIndex: number = curIndex + shift;
 
-    resIndex = resIndex < 0 ? abcArr.length + resIndex : resIndex;
-    resIndex = resIndex >= abcArr.length ? resIndex - abcArr.length : resIndex;
+    resIndex = resIndex < 0 ? abcLength + resIndex : resIndex;
+    resIndex = resIndex >= abcLength ? resIndex - abcLength : resIndex;
 
-    return abcArr[resIndex];
+    return String.fromCharCode(resIndex + aCode);
 }
 
 console.log(shiftRound("aabx!", 4)); // → "eefb!"
