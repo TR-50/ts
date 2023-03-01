@@ -8,5 +8,4 @@ export class Rectangle implements Shape {
     perimeter(): number {
         return 2 * this.height + 2 * this.width;
     }
-
 }
